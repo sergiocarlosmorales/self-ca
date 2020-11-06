@@ -31,8 +31,9 @@ fi
 
 # Create a folder and move into it.
 # Using a prefix, to easily gitignore.
-mkdir "ca-$CA_NAME"
-cd "ca-$CA_NAME"
+CA_FOLDER_NAME="ca-$CA_NAME"
+mkdir "$CA_FOLDER_NAME"
+cd "$CA_FOLDER_NAME"
 
 CA_KEY_FILE_NAME="$CA_NAME-ca-private-key".key
 CA_KEY_LENGTH=4096
@@ -45,12 +46,15 @@ CA_CERT_OU="Much Secure WOW"
 CA_CERT_CN="much.secure.wow"
 CA_CERT_SUBJ="/C=US/ST=Texas/L=Dallas/O=$CA_CERT_O/OU=$CA_CERT_OU/CN=$CA_CERT_CN"
 
-
+# Do the heavy work
 echo "Generating CA private key"
+echo "!!!!!!!!!!!!! Ensure pass phrase is in password manager !!!!!!!!!!!!!"
 openssl genrsa -aes256 -out "$CA_KEY_FILE_NAME" $CA_KEY_LENGTH
 chmod 600 "$CA_KEY_FILE_NAME"
 echo "Generating CA root certificate"
 openssl req -x509 -new -nodes \
   -subj "$CA_CERT_SUBJ" \
   -key "$CA_KEY_FILE_NAME" -sha256 -days $CA_CERT_DAYS -out "$CA_CERT_FILE_NAME"
+
+echo "!!!!!!!!!!!!! Must trust the $CA_FOLDER_NAME/$CA_CERT_FILE_NAME in all devices !!!!!!!!!!!!!"
 
