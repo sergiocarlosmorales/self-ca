@@ -35,6 +35,7 @@ CA_FOLDER_NAME="ca-$CA_NAME"
 mkdir "$CA_FOLDER_NAME"
 cd "$CA_FOLDER_NAME"
 
+# This has to be kept in sync with the create-self-signed-cert.sh script.
 CA_KEY_FILE_NAME="$CA_NAME-ca-private-key".key
 CA_KEY_LENGTH=4096
 CA_CERT_DAYS=1825
