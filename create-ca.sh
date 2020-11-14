@@ -44,7 +44,7 @@ CA_CERT_FILE_NAME="$CA_NAME-ca-root-cert".pem
 # TODO: These could use some escaping to ensure the subject string is well formatted
 CA_CERT_O="SC - custom CA"
 CA_CERT_OU="Much Secure WOW"
-CA_CERT_CN="much.secure.wow"
+CA_CERT_CN="much.secure.wow - $CA_NAME"
 CA_CERT_SUBJ="/C=US/ST=Texas/L=Dallas/O=$CA_CERT_O/OU=$CA_CERT_OU/CN=$CA_CERT_CN"
 
 # Do the heavy work

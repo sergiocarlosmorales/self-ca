@@ -44,6 +44,8 @@ CERT_FOLDER_NAME="cert-$DOMAIN"
 CERT_CSR_FILE_NAME="$DOMAIN-certificate-signing-request".csr 
 CERT_KEY_FILE_NAME="$DOMAIN".key
 CERT_FILE_NAME="$DOMAIN-cert.crt"
+CERT_WITH_KEY_FILE_NAME="$DOMAIN-cert-and-private-key.pem"
+# Chrome and other browsers limit the max length to 1 year.
 CERT_DAYS=365
 
 # This has to be kept in sync with the create-ca.sh script.
@@ -53,7 +55,7 @@ CA_KEY_FILE_PATH="$CA_FOLDER/$CA_NAME-ca-private-key".key
 
 EXT_FILE_NAME="$DOMAIN-extensions.ext"
 CERT_O="SC - custom certificate"
-CERT_OU="Much Secure WOW"
+CERT_OU="Much Secure WOW - $CA_NAME"
 CERT_SUBJ="/C=US/ST=Texas/L=Dallas/O=$CERT_O/OU=$CERT_OU/CN=$DOMAIN"
 
 mkdir "$CERT_FOLDER_NAME"
@@ -76,3 +78,8 @@ EOF
 
 openssl x509 -req -in $CERT_CSR_FILE_NAME -CA "$CA_CERT_FILE_PATH" -CAkey "$CA_KEY_FILE_PATH" -CAcreateserial \
   -out $CERT_FILE_NAME -days $CERT_DAYS -sha256 -extfile "$EXT_FILE_NAME"
+
+# Let's create a PEM file with both public & private key, some shit sometimes needs it.
+touch "$CERT_WITH_KEY_FILE_NAME"
+cat "$CERT_FILE_NAME" >> "$CERT_WITH_KEY_FILE_NAME"
+cat "$CERT_KEY_FILE_NAME" >> "$CERT_WITH_KEY_FILE_NAME"
