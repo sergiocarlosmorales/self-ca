@@ -20,7 +20,7 @@ chmod u=rwx create-ca.sh
         3. Go to General > About > Certificate Trust Settings and enable the cert
 
 ## Create a self-signed certificate
-1. Ensure at least one CA has been generated with these steps
+1. Ensure at least one CA has been generated with the steps above
 2. Ensure script is executable
 ``
 chmod u=rwx create-self-signed-cert.sh
