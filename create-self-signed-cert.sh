@@ -40,7 +40,8 @@ fi
 
 # Create a folder and move into it.
 # Using a prefix, to easily gitignore.
-CERT_FOLDER_NAME="cert-$DOMAIN"
+SUFFIX_DATE=$(date +%F)
+CERT_FOLDER_NAME="cert-$DOMAIN-$SUFFIX_DATE"
 CERT_CSR_FILE_NAME="$DOMAIN-certificate-signing-request".csr 
 CERT_KEY_FILE_NAME="$DOMAIN".key
 CERT_FILE_NAME="$DOMAIN-cert.crt"
