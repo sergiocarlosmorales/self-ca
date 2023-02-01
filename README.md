@@ -45,7 +45,7 @@ It will prompt for a password, which is NOT the private key passphrase, it's a p
 1. Using the steps above, generate a PKCS12 file and have the password for it
 2. Move the PKCS12 file to a location readable by the container
 3. On Plex go to > Settings > Network
-4. Enter file path in 'Custom certificate location'
+4. Enter file path in 'Custom certificate location'. e.g. `/cert/cert-and-private-key.pkcs12`
 5. Enter PKCS12 password
 6. On 'Custom certificate domain' enter domain & port. e.g. `plex.synology.local:32400`
 7. On 'Custom server access URLs' enter full URL. e.g. `https://plex.synology.local:32400/web/`
